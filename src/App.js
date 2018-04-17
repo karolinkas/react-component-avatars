@@ -16,18 +16,22 @@ class App extends Component {
     for (let i = 0; i < gridElements.length; i += 4) {
           const oneRow = [];
           oneRow.push(gridElements.slice(i, i + 4).map(item => {
-        return <div style={{display: 'inline-block'}}>{item}</div>
+        return <div className="gridElement" style={{display: 'inline-block'}}>{item}</div>
     }))
     grid.push(oneRow.map(itm => {return <div>{itm}</div>}))
     }
     return grid;
-   }
+  }
+
+  swapIcon (event){
+    console.log(event);
+  }
 
   imageList (){
     return images.map((image, i) => {
       return (
-        <div key={i} className="grid">
-          <div className="col"><img src={images[i]} alt="avatar"/></div>
+        <div key={i.toString()} onClick={this.swapIcon} className="imageWrapper">
+          <img src={images[i]} alt="avatar"/>
         </div>
       );
     });
@@ -37,11 +41,11 @@ class App extends Component {
 
     return (
       <div> 
-        <div><img src={images[0]}/></div>
+        <div><img alt="current" src={images[0]}/></div>
         <div className="popover">
           {this.grid()}
         </div>
-    </div>
+      </div>
     );
   }
 }
