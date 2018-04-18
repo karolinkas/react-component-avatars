@@ -17,9 +17,9 @@ class Image extends Component {
   selectIcon (){
     this.setState({selected: true}); 
   }
-  
+  //onClick={() => this.selectIcon()}
   render (){
-    return (<div key={this.state.src.toString()} onClick={() => this.selectIcon()} className="image-wrapper">
+    return (<div key={this.state.src.toString()} onClick={this.props.sendSelection} className="image-wrapper">
       <img className={["avatar", (this.state.selected ? "active" : null)].join(" ")} src={this.state.src} alt="avatar"/>
       <div className={"overlay-background"}></div>
     </div>);
@@ -30,6 +30,7 @@ class AvatarPicker extends Component {
   constructor (props){
     super(props);
     this.state = {imageData: props.imageData};
+    this.getCurrentImage = this.getCurrentImage.bind(this);
   }
 
   grid () { 
@@ -45,16 +46,15 @@ class AvatarPicker extends Component {
     }
     return grid;
   }
-  getCurrentImage (selectedImage, e){
-    console.log("selectedImage");
-    console.log(selectedImage);
-    console.log(e);
+  getCurrentImage (i){
+    console.log("image");
+    //console.log(i);
+    //TODO: pass through to App
   }
 
   imageList (){
-    console.log(this);
     return this.state.imageData.map((image, i) => {
-      return (<Image image={image} onClick={() => this.getCurrentImage(image)}/>
+      return (<Image image={image} sendSelection={() => this.getCurrentImage(i)}/>
       );
     });
   }
@@ -74,6 +74,10 @@ class App extends Component {
     this.state = {imageData: images.map((image, i) => {
       return {"src" : image, "label": `Avatar ${i + 1}`, "id": i, "key": `key${i + 1}`};
     })};
+  }
+
+  setCurrentImage(){
+    console.log("setting");
   }
 
   render() {
