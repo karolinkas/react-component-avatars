@@ -5,15 +5,44 @@ $pop-over-background: rgb(44, 48, 51);
 $pop-over-shadow: rgb(102, 102, 102);
 $title-color: rgb(249, 249, 249);
 
+$widthPopOver: 280px;
+$widthHeightImage: 60px;
+
 body {
   background-color: $title-color;
 }
-
 img{
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
+  height: $widthHeightImage;
+  width: $widthHeightImage;
 }
+.image-wrapper{
+  height: $widthHeightImage;
+  width: $widthHeightImage;
+  position: relative;
+  
+  img.avatar{
+    border-radius: 50%;
+  }
+
+  &:hover{
+    opacity: 0.8; 
+  }
+  &:active{
+
+  }
+
+  .overlay{
+    opacity: 0;
+    background: $overlay-avatar;
+    height: $widthHeightImage;
+    width: $widthHeightImage;
+    position: absolute;
+    top: 0;
+    left: 0; 
+  }
+
+}
+
 .grid{
   display: flex;
   .col{
@@ -25,11 +54,14 @@ img{
   //TODO: check why it's collapsing with 14px
   padding: 5px;
 }
+.currentAvatar{
+  margin-left: $widthPopOver / 2 - $widthHeightImage / 2;
+}
 
 
 .popover{
   padding: 14px;
   border-radius: 2px;
-  width: 280px;
+  width: $widthPopOver;
   background-color: $pop-over-background;
 }

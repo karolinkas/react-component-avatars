@@ -3,8 +3,24 @@ body {
 
 img {
   height: 60px;
+  width: 60px; }
+
+.image-wrapper {
+  height: 60px;
   width: 60px;
-  border-radius: 50%; }
+  position: relative; }
+  .image-wrapper img.avatar {
+    border-radius: 50%; }
+  .image-wrapper:hover {
+    opacity: 0.8; }
+  .image-wrapper .overlay {
+    opacity: 0;
+    background: #7aa1b2;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    top: 0;
+    left: 0; }
 
 .grid {
   display: flex; }
@@ -14,6 +30,9 @@ img {
 
 .gridElement {
   padding: 5px; }
+
+.currentAvatar {
+  margin-left: 110px; }
 
 .popover {
   padding: 14px;
