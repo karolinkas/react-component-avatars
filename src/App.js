@@ -1,3 +1,5 @@
+import {AvatarPicker} from "./AvatarPicker.js"
+
 import React, { Component } from 'react';
 import './App.css';
 
@@ -7,73 +9,6 @@ function importAll(r) {
 
 const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
 
-
-class Image extends Component {
-  constructor (props){
-    super(props);
-    this.state = {...props.image};
-    this.state.selected = false;
-  }
-  selectIcon (){
-    this.setState({selected: true}); 
-  }
-  render (){
-    return (<div key={this.state.src.toString()} onClick={this.props.imageToGrid} className="image-wrapper">
-      <img className={["avatar", "circle-border", (this.state.selected ? "active" : null)].join(" ")} src={this.state.src} alt="avatar"/>
-      <div className={"overlay-background"}></div>
-    </div>);
-  }
-}
-
-class AvatarPicker extends Component {
-  constructor (props){
-    super(props);
-    this.state = {
-      imageData: props.imageData,
-      selected: 0
-    };
-    this.getCurrentImage = (i) => {
-      if (this.state.imageData[i] && this.state.imageData[i].src){
-        this.setState({selected: i + 1});
-      }
-    }
-  }
-
-  grid () { 
-    const grid = [];
-    this.gridElements = this.imageList();
-    
-    //this allows us to easily change the design by just changing the columnNumber
-    const columnNum = 4;
-    let rowCount = 0;
-    for (let i = 0; i < this.gridElements.length; i += columnNum) {
-          const oneRow = [];
-          rowCount ++;
-          oneRow.push(this.gridElements.slice(i, i + columnNum).map(item => {
-        return <div key={`column${item.props.image.label} + row${rowCount}`} className="gridElement" style={{display: 'inline-block'}}>{item}</div>
-    }))
-    grid.push(oneRow.map(item => {return <div key={item.toString()}>{item}</div>}))
-    }
-    return grid;
-  }
-
-
-  imageList (){
-    return this.state.imageData.map((image, i) => {
-      return (<Image image={image} imageToGrid={() => this.getCurrentImage(i)}/>
-      );
-    });
-  }
-  
-  render (){
-    return (
-      <div onClick={() => this.props.pickerToApp(this.state.selected)} className="popover">
-      {this.grid()}
-    </div>
-    );
-  }
-}
-
 class App extends Component {
   constructor (props){
     super(props);
@@ -82,18 +17,26 @@ class App extends Component {
       current: 0,
       imageData: images.map((image, i) => {
         return {"src" : image, "label": `Avatar ${i + 1}`, "id": i, "key": `key${i + 1}`};
-      })};
+      }),
+      open: false
+    };
 
     this.setCurrentImage = (i) => {
       this.setState({current: i});
+    }
+    this.openPicker = () => {
+      this.setState({open: !this.state.open});
+      console.log(this.state.open);
     }
   }
 
   render() {
     return (
       <div> 
-        <div className="current-avatar"><img alt="current" src={this.state.imageData[this.state.current].src}/></div>
-        <AvatarPicker pickerToApp={this.setCurrentImage} {...this.state}/>
+        <div className="current-avatar">
+          <img onClick={this.openPicker} alt="current" src={this.state.imageData[this.state.current].src}/>
+        </div>
+          {this.state.open ? <AvatarPicker  pickerToApp={this.setCurrentImage} {...this.state}/> : null}
       </div>
     );
   }

@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Check for click 1`] = `
+<div
+  className="popover"
+  onClick={[Function]}
+>
+  <div>
+    <div
+      className="gridElement"
+      style={
+        Object {
+          "display": "inline-block",
+        }
+      }
+    >
+      <div
+        className="image-wrapper"
+        onClick={[Function]}
+      >
+        <img
+          alt="avatar"
+          className="avatar circle-border "
+          src="niceFolder"
+        />
+        <div
+          className="overlay-background"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders without crashing 1`] = `
+<div
+  className="popover"
+  onClick={[Function]}
+>
+  <div>
+    <div
+      className="gridElement"
+      style={
+        Object {
+          "display": "inline-block",
+        }
+      }
+    >
+      <div
+        className="image-wrapper"
+        onClick={[Function]}
+      >
+        <img
+          alt="avatar"
+          className="avatar circle-border "
+          src="niceFolder"
+        />
+        <div
+          className="overlay-background"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
