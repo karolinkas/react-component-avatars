@@ -5,14 +5,23 @@ img {
   height: 60px;
   width: 60px; }
 
+.circle-border {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%; }
+
 .image-wrapper {
   height: 60px;
   width: 60px;
   position: relative; }
-  .image-wrapper img.avatar {
-    border-radius: 50%; }
   .image-wrapper:hover {
-    opacity: 0.8; }
+    opacity: 0.8;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    box-shadow: 0 0 0 3px tomato;
+    -webkit-box-shadow: 0 0 0 3px tomato;
+    -moz-box-shadow: 0 0 0 3px tomato; }
   .image-wrapper .overlay {
     opacity: 0;
     background: #7aa1b2;
@@ -31,7 +40,7 @@ img {
 .gridElement {
   padding: 5px; }
 
-.currentAvatar {
+.current-avatar {
   margin-left: 110px; }
 
 .popover {

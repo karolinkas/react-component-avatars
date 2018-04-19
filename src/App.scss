@@ -15,17 +15,28 @@ img{
   height: $widthHeightImage;
   width: $widthHeightImage;
 }
+
+.circle-border{
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
 .image-wrapper{
   height: $widthHeightImage;
   width: $widthHeightImage;
   position: relative;
   
   img.avatar{
-    border-radius: 50%;
   }
 
   &:hover{
-    opacity: 0.8; 
+    opacity: 0.8;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    box-shadow: 0 0 0 3px tomato;
+    -webkit-box-shadow: 0 0 0 3px tomato;
+    -moz-box-shadow: 0 0 0 3px tomato; 
   }
   &:active{
 
@@ -54,7 +65,7 @@ img{
   //TODO: check why it's collapsing with 14px
   padding: 5px;
 }
-.currentAvatar{
+.current-avatar{
   margin-left: $widthPopOver / 2 - $widthHeightImage / 2;
 }
 

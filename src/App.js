@@ -19,7 +19,7 @@ class Image extends Component {
   }
   render (){
     return (<div key={this.state.src.toString()} onClick={this.props.imageToGrid} className="image-wrapper">
-      <img className={["avatar", (this.state.selected ? "active" : null)].join(" ")} src={this.state.src} alt="avatar"/>
+      <img className={["avatar", "circle-border", (this.state.selected ? "active" : null)].join(" ")} src={this.state.src} alt="avatar"/>
       <div className={"overlay-background"}></div>
     </div>);
   }
@@ -92,7 +92,7 @@ class App extends Component {
   render() {
     return (
       <div> 
-        <div  className="currentAvatar"><img alt="current" src={this.state.imageData[this.state.current].src}/></div>
+        <div className="current-avatar"><img alt="current" src={this.state.imageData[this.state.current].src}/></div>
         <AvatarPicker pickerToApp={this.setCurrentImage} {...this.state}/>
       </div>
     );
