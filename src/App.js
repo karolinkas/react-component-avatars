@@ -17,9 +17,8 @@ class Image extends Component {
   selectIcon (){
     this.setState({selected: true}); 
   }
-  //onClick={() => this.selectIcon()}
   render (){
-    return (<div key={this.state.src.toString()} onClick={this.props.sendSelection} className="image-wrapper">
+    return (<div key={this.state.src.toString()} onClick={this.props.imageToGrid} className="image-wrapper">
       <img className={["avatar", (this.state.selected ? "active" : null)].join(" ")} src={this.state.src} alt="avatar"/>
       <div className={"overlay-background"}></div>
     </div>);
@@ -29,39 +28,46 @@ class Image extends Component {
 class AvatarPicker extends Component {
   constructor (props){
     super(props);
-    this.state = {imageData: props.imageData};
-    this.getCurrentImage = this.getCurrentImage.bind(this);
+    this.state = {
+      imageData: props.imageData,
+      selected: 0
+    };
+    this.getCurrentImage = (i) => {
+      if (this.state.imageData[i] && this.state.imageData[i].src){
+        this.setState({selected: i + 1});
+      }
+    }
   }
 
   grid () { 
     const grid = [];
     this.gridElements = this.imageList();
     
-    for (let i = 0; i < this.gridElements.length; i += 4) {
+    //this allows us to easily change the design by just changing the columnNumber
+    const columnNum = 4;
+    let rowCount = 0;
+    for (let i = 0; i < this.gridElements.length; i += columnNum) {
           const oneRow = [];
-          oneRow.push(this.gridElements.slice(i, i + 4).map(item => {
-        return <div key={this.gridElements[i].key} className="gridElement" style={{display: 'inline-block'}}>{item}</div>
+          rowCount ++;
+          oneRow.push(this.gridElements.slice(i, i + columnNum).map(item => {
+        return <div key={`column${item.props.image.label} + row${rowCount}`} className="gridElement" style={{display: 'inline-block'}}>{item}</div>
     }))
     grid.push(oneRow.map(item => {return <div key={item.toString()}>{item}</div>}))
     }
     return grid;
   }
-  getCurrentImage (i){
-    console.log("image");
-    //console.log(i);
-    //TODO: pass through to App
-  }
+
 
   imageList (){
     return this.state.imageData.map((image, i) => {
-      return (<Image image={image} sendSelection={() => this.getCurrentImage(i)}/>
+      return (<Image image={image} imageToGrid={() => this.getCurrentImage(i)}/>
       );
     });
   }
   
   render (){
     return (
-      <div className="popover">
+      <div onClick={() => this.props.pickerToApp(this.state.selected)} className="popover">
       {this.grid()}
     </div>
     );
@@ -71,20 +77,23 @@ class AvatarPicker extends Component {
 class App extends Component {
   constructor (props){
     super(props);
-    this.state = {imageData: images.map((image, i) => {
-      return {"src" : image, "label": `Avatar ${i + 1}`, "id": i, "key": `key${i + 1}`};
-    })};
-  }
 
-  setCurrentImage(){
-    console.log("setting");
+    this.state = {
+      current: 0,
+      imageData: images.map((image, i) => {
+        return {"src" : image, "label": `Avatar ${i + 1}`, "id": i, "key": `key${i + 1}`};
+      })};
+
+    this.setCurrentImage = (i) => {
+      this.setState({current: i});
+    }
   }
 
   render() {
     return (
       <div> 
-        <div className="currentAvatar"><img alt="current" src={this.state.imageData[0].src}/></div>
-        <AvatarPicker {...this.state}/>
+        <div  className="currentAvatar"><img alt="current" src={this.state.imageData[this.state.current].src}/></div>
+        <AvatarPicker pickerToApp={this.setCurrentImage} {...this.state}/>
       </div>
     );
   }
