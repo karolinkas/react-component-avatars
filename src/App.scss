@@ -36,12 +36,30 @@ img{
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    box-shadow: 0 0 0 3px tomato;
+/*     box-shadow: 0 0 0 3px tomato;
     -webkit-box-shadow: 0 0 0 3px tomato;
-    -moz-box-shadow: 0 0 0 3px tomato; 
+    -moz-box-shadow: 0 0 0 3px tomato;  */
   }
   &:active{
-
+  }
+  @keyframes spinner {
+    to {transform: rotate(360deg);}
+  }
+    
+  .spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    //top: 25%;
+    //left: 25%;
+    width: 63px;
+    height: 63px;
+    border: 3px solid $pop-over-background;
+    border-top-color: $spinner-avatar;
+    margin-top: 0px;
+    margin-left: 0px;
+    border-radius: 50%;
+    animation: spinner .6s linear infinite;
   }
 
   .overlay{

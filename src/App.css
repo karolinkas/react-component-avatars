@@ -20,9 +20,25 @@ img {
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    box-shadow: 0 0 0 3px tomato;
+    /*     box-shadow: 0 0 0 3px tomato;
     -webkit-box-shadow: 0 0 0 3px tomato;
-    -moz-box-shadow: 0 0 0 3px tomato; }
+    -moz-box-shadow: 0 0 0 3px tomato;  */ }
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg); } }
+  .image-wrapper .spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    width: 63px;
+    height: 63px;
+    border: 3px solid #2c3033;
+    border-top-color: #7aa1b2;
+    margin-top: 0px;
+    margin-left: 0px;
+    border-radius: 50%;
+    animation: spinner .6s linear infinite; }
   .image-wrapper .overlay {
     opacity: 0;
     background: #7aa1b2;
