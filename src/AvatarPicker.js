@@ -10,9 +10,7 @@ export class AvatarPicker extends Component {
         selected: 0
       };
       this.getCurrentImage = (i) => {
-        if (this.state.imageData[i] && this.state.imageData[i].src){
           this.setState({selected: i + 1});
-        }
       }
     }
   

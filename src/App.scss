@@ -4,100 +4,103 @@ $spinner-avatar: rgb(122, 161, 178);
 $pop-over-background: rgb(44, 48, 51);
 $pop-over-shadow: rgb(102, 102, 102);
 $title-color: rgb(249, 249, 249);
+$transparent: rgba(0,0,0,0);
 
 $widthPopOver: 280px;
 $widthHeightImage: 60px;
 
 body {
   background-color: $title-color;
-}
-img{
-  height: $widthHeightImage;
-  width: $widthHeightImage;
-  cursor: pointer;
-}
 
-.circle-border{
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-}
-.image-wrapper{
-  height: $widthHeightImage;
-  width: $widthHeightImage;
-  position: relative;
-  
-  img.avatar{
-    
-  }
-
-  &:hover{
-    opacity: 0.8;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-/*     box-shadow: 0 0 0 3px tomato;
-    -webkit-box-shadow: 0 0 0 3px tomato;
-    -moz-box-shadow: 0 0 0 3px tomato;  */
-  }
-  &:active{
-  }
-  @keyframes spinner {
-    to {transform: rotate(360deg);}
-  }
-    
-  .spinner:before {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    //top: 25%;
-    //left: 25%;
-    width: 63px;
-    height: 63px;
-    border: 3px solid $pop-over-background;
-    border-top-color: $spinner-avatar;
-    margin-top: 0px;
-    margin-left: 0px;
-    border-radius: 50%;
-    animation: spinner .6s linear infinite;
-  }
-
-  .overlay{
-    opacity: 0;
-    background: $overlay-avatar;
+  img{
     height: $widthHeightImage;
     width: $widthHeightImage;
-    position: absolute;
-    top: 0;
-    left: 0; 
+    cursor: pointer;
+    &.circle-border{
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+    } 
   }
 
-}
 
-.grid{
-  display: flex;
-  .col{
-    justify-content: space-between;
-    width: 50%;
+
+
+  /* .grid{
+    display: flex;
+    .col{
+      justify-content: space-between;
+      width: 50%;
+    }
+  } */
+  .gridElement{
+    //TODO: check why it's collapsing with 14px
+    padding: 5px;
   }
-}
-.gridElement{
-  //TODO: check why it's collapsing with 14px
-  padding: 5px;
-}
-.current-avatar{
-  margin-left: $widthPopOver / 2 - $widthHeightImage / 2;
-}
+  .current-avatar{
+    margin-left: $widthPopOver / 2 - $widthHeightImage / 2;
+  }
 
 
-.popover{
-  padding: 14px;
-  border-radius: 2px;
-  width: $widthPopOver;
-  background-color: $pop-over-background;
-  cursor: pointer;
+  .popover{
+    padding: 14px;
+    width: $widthPopOver;
+    height: auto;
+    background-color: $pop-over-background;
+    cursor: pointer;
 
-  .open{
-    opacity: 1;
+    .open{
+    }
+
+    .image-wrapper{
+      height: $widthHeightImage;
+      width: $widthHeightImage;
+      position: relative;
+      
+      img.avatar{
+        
+      }
+    
+      &:hover{
+        opacity: 0.8;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        box-shadow: 0 0 0 3px $border-avatar;
+        -webkit-box-shadow: 0 0 0 3px $border-avatar;
+        -moz-box-shadow: 0 0 0 3px $border-avatar;
+      }
+      &:active{
+      }
+      @keyframes spinner {
+        to {transform: rotate(360deg);}
+      }
+        
+      .spinner:before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 63px;
+        height: 63px;
+        border: 3px solid $spinner-avatar;
+        border-top-color: rgba(0,0,0,0);
+        margin-top: 0px;
+        margin-left: 0px;
+        border-radius: 50%;
+        animation: spinner 1s linear infinite;
+      }
+    
+      .overlay{
+        opacity: 0;
+        background: $overlay-avatar;
+        height: $widthHeightImage;
+        width: $widthHeightImage;
+        position: absolute;
+        top: 0;
+        left: 0; 
+      }
+    }
   }
 }
