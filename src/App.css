@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext");
 body {
   background-color: #f9f9f9; }
   body img {
@@ -9,11 +10,13 @@ body {
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%; }
   body .gridElement {
-    padding: 5px; }
+    padding: 4px; }
   body .current-avatar {
     margin-left: 110px; }
   body .wrapper {
     width: 280px; }
+    body .wrapper.closed {
+      opacity: 0; }
     body .wrapper.opening {
       animation: comeIn linear 0.4s;
       animation-iteration-count: infinte;
@@ -53,11 +56,23 @@ body {
     opacity: 0;
     transform: scaleX(0) scaleY(0); } }
   body .popover {
-    padding: 14px;
     width: 280px;
     height: auto;
     background-color: #2c3033;
-    cursor: pointer; }
+    cursor: pointer;
+    border-radius: 2px; }
+    body .popover ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0; }
+    body .popover label {
+      margin-left: 28%;
+      margin-top: 14px;
+      margin-bottom: 14px;
+      color: #f9f9f9;
+      font-family: 'Source Sans Pro', sans-serif;
+      size: 16px;
+      display: inline-block; }
     body .popover .image-wrapper {
       height: 60px;
       width: 60px;
@@ -92,6 +107,7 @@ body {
         margin-top: 0px;
         margin-left: 0px;
         border-radius: 50%;
+        opacity: 0;
         animation: spinner 1s linear infinite;
         -webkit-animation-iteration-count: 1; }
       body .popover .image-wrapper .overlay {

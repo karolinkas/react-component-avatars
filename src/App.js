@@ -23,7 +23,6 @@ class App extends Component {
     };
 
     this.setCurrentImage = (i) => {
-      console.log(i);
       this.setState({current: i});
     };
 
@@ -38,17 +37,27 @@ class App extends Component {
     const wrapper = document.getElementsByClassName("wrapper")[0];
     const currentAvatar = document.getElementsByClassName("current-avatar")[0];
     
-    // to stop and pause the animation add an addtional class
+    // to stop and pause the opening animation add an addtional class
     // to play it and remove the same class when the animation is over
-    content.addEventListener("click", (e) => {
+    currentAvatar.addEventListener("click", (e) => {
       if (!this.state.open){
+        // start opening on clicking current avatar
         wrapper.classList.add("opening");
         wrapper.classList.remove("closing");
-      } else {
-        wrapper.classList.add("closing");
-        wrapper.classList.remove("opening");
+        wrapper.classList.remove("closed");
       }
+    });
 
+    wrapper.addEventListener("click", (e) => {
+      if (this.state.open){
+        // close only after spinner has shown
+         setTimeout(function() { 
+          wrapper.classList.add("closing");
+          //wrapper.classList.add("closed");
+          wrapper.classList.remove("opening");
+          console.log(wrapper.classList);
+        }.bind(this), 1000);
+      }
     });
   }
 
@@ -58,8 +67,8 @@ class App extends Component {
         <div className="current-avatar">
           <img onClick={this.openPicker} alt="current" src={this.imageData[this.state.current].src}/>
         </div>
-        <div className={"wrapper"}>
-          <AvatarPicker pickerToApp={this.setCurrentImage} imageData={this.imageData}/>
+        <div className={"wrapper closed"}>
+          <AvatarPicker className={this.openPicker} pickerToApp={this.setCurrentImage} imageData={this.imageData}/>
         </div>
       </div>
     );

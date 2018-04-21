@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
+
 $border-avatar: rgb(155, 160, 163);
 $overlay-avatar: rgb(122, 161, 178);
 $spinner-avatar: rgb(122, 161, 178);
@@ -25,7 +27,8 @@ body {
 
   .gridElement{
     //TODO: check why it's collapsing with 14px
-    padding: 5px;
+    padding: 4px;
+    //float: left;
   }
   .current-avatar{
     margin-left: $widthPopOver / 2 - $widthHeightImage / 2;
@@ -34,6 +37,9 @@ body {
   
   .wrapper{
     width: $widthPopOver;
+    &.closed{
+      opacity: 0;
+    }
 
     &.opening{
       animation: comeIn linear 0.4s;
@@ -88,14 +94,29 @@ body {
     
   }
 
-
   .popover{
-    padding: 14px;
+    ul{
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    //padding: 14px;
     width: $widthPopOver;
     height: auto;
     background-color: $pop-over-background;
     cursor: pointer;
+    border-radius: 2px;
 
+    label{
+      margin-left: 28%;
+      margin-top: 14px;
+      margin-bottom: 14px;
+      color: $title-color;
+      font-family: 'Source Sans Pro', sans-serif;
+      size: 16px;
+      display:inline-block;
+    }
+  
 
     .image-wrapper{
       height: $widthHeightImage;
@@ -105,7 +126,7 @@ body {
       img.avatar{
         
       }
-    
+
       &:hover{
         opacity: 0.8;
         border-radius: 50%;
@@ -144,6 +165,7 @@ body {
         margin-top: 0px;
         margin-left: 0px;
         border-radius: 50%;
+        opacity: 0;
         animation: spinner 1s linear infinite;
         -webkit-animation-iteration-count: 1;
       }

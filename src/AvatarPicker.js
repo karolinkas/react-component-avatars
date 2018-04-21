@@ -24,9 +24,9 @@ export class AvatarPicker extends Component {
             const oneRow = [];
             rowCount ++;
             oneRow.push(this.gridElements.slice(i, i + columnNum).map(item => {
-          return <div key={`column${item.props.image.label} + row${rowCount}`} className="gridElement" style={{display: 'inline-block'}}>{item}</div>
+          return <li key={`column${item.props.image.label} + row${rowCount}`} className="gridElement" style={{display: 'inline-block'}}>{item}</li>
       }))
-      grid.push(oneRow.map(item => {return <div key={item.toString()}>{item}</div>}))
+      grid.push(oneRow.map(item => {return <ul key={item.toString()}>{item}</ul>}))
       }
       return grid;
     }
@@ -42,7 +42,8 @@ export class AvatarPicker extends Component {
     render (){
         return (
             <div onClick={() => this.props.pickerToApp(this.state.selected)} className="popover">
-                {this.grid()}
+              <label>Choose your avatar</label>
+              {this.grid()}
             </div>
       );
     }
