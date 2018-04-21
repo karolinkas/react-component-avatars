@@ -23,22 +23,69 @@ body {
     } 
   }
 
-
-
-
-  /* .grid{
-    display: flex;
-    .col{
-      justify-content: space-between;
-      width: 50%;
-    }
-  } */
   .gridElement{
     //TODO: check why it's collapsing with 14px
     padding: 5px;
   }
   .current-avatar{
     margin-left: $widthPopOver / 2 - $widthHeightImage / 2;
+  }
+
+  
+  .wrapper{
+    width: $widthPopOver;
+
+    &.opening{
+      animation: comeIn linear 0.4s;
+      animation-iteration-count: infinte;
+      transform-origin: center;
+      animation-direction: normal;
+    }
+    &.closing {
+      animation: goOut linear 0.4s;
+      animation-iteration-count: infinte;
+      transform-origin: center;
+      animation-direction: normal;
+    }
+    
+    @keyframes comeIn{
+      0% {
+        opacity:0;
+        transform:  scaleX(0.00) scaleY(0.00) ;
+      }
+      62% {
+        opacity:0.5;
+        transform:  scaleX(0.95) scaleY(0.95) ;
+      }
+      83% {
+        opacity:1;
+        transform:  scaleX(1.20) scaleY(1.20) ;
+      }
+      100% {
+        opacity:1;
+        transform:  scaleX(1.00) scaleY(1.00) ;
+      }
+    }
+
+    @keyframes goOut{
+      0% {
+        opacity:1;
+        transform:  scaleX(1.00) scaleY(1.00) ;
+      }
+      62% {
+        opacity:1;
+        transform:  scaleX(0.9) scaleY(0.9) ;
+      }
+      83% {
+        opacity:0.5;
+        transform:  scaleX(0.7) scaleY(0.7) ;
+      }
+      100% {
+        opacity:0;
+        transform:  scaleX(0.00) scaleY(0.00) ;
+      }
+    }
+    
   }
 
 
@@ -49,8 +96,6 @@ body {
     background-color: $pop-over-background;
     cursor: pointer;
 
-    .open{
-    }
 
     .image-wrapper{
       height: $widthHeightImage;
@@ -72,8 +117,18 @@ body {
       }
       &:active{
       }
+      
       @keyframes spinner {
-        to {transform: rotate(360deg);}
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: rotate(360deg);
+          opacity: 0;
+        }
       }
         
       .spinner:before {
@@ -90,6 +145,7 @@ body {
         margin-left: 0px;
         border-radius: 50%;
         animation: spinner 1s linear infinite;
+        -webkit-animation-iteration-count: 1;
       }
     
       .overlay{

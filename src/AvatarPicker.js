@@ -6,11 +6,10 @@ export class AvatarPicker extends Component {
     constructor (props){
       super(props);
       this.state = {
-        imageData: props.imageData,
         selected: 0
       };
       this.getCurrentImage = (i) => {
-          this.setState({selected: i + 1});
+          this.setState({selected: i});
       }
     }
   
@@ -34,14 +33,13 @@ export class AvatarPicker extends Component {
   
   
     imageList (){
-      return this.state.imageData.map((image, i) => {
+      return this.props.imageData.map((image, i) => {
         return (<Image image={image} imageToGrid={() => this.getCurrentImage(i)}/>
         );
       });
     }
     
     render (){
-        console.log(this);
         return (
             <div onClick={() => this.props.pickerToApp(this.state.selected)} className="popover">
                 {this.grid()}

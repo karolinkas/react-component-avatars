@@ -1,12 +1,5 @@
 body {
-  background-color: #f9f9f9;
-  /* .grid{
-    display: flex;
-    .col{
-      justify-content: space-between;
-      width: 50%;
-    }
-  } */ }
+  background-color: #f9f9f9; }
   body img {
     height: 60px;
     width: 60px;
@@ -19,6 +12,46 @@ body {
     padding: 5px; }
   body .current-avatar {
     margin-left: 110px; }
+  body .wrapper {
+    width: 280px; }
+    body .wrapper.opening {
+      animation: comeIn linear 0.4s;
+      animation-iteration-count: infinte;
+      transform-origin: center;
+      animation-direction: normal; }
+    body .wrapper.closing {
+      animation: goOut linear 0.4s;
+      animation-iteration-count: infinte;
+      transform-origin: center;
+      animation-direction: normal; }
+
+@keyframes comeIn {
+  0% {
+    opacity: 0;
+    transform: scaleX(0) scaleY(0); }
+  62% {
+    opacity: 0.5;
+    transform: scaleX(0.95) scaleY(0.95); }
+  83% {
+    opacity: 1;
+    transform: scaleX(1.2) scaleY(1.2); }
+  100% {
+    opacity: 1;
+    transform: scaleX(1) scaleY(1); } }
+
+@keyframes goOut {
+  0% {
+    opacity: 1;
+    transform: scaleX(1) scaleY(1); }
+  62% {
+    opacity: 1;
+    transform: scaleX(0.9) scaleY(0.9); }
+  83% {
+    opacity: 0.5;
+    transform: scaleX(0.7) scaleY(0.7); }
+  100% {
+    opacity: 0;
+    transform: scaleX(0) scaleY(0); } }
   body .popover {
     padding: 14px;
     width: 280px;
@@ -39,8 +72,13 @@ body {
         -moz-box-shadow: 0 0 0 3px #9ba0a3; }
 
 @keyframes spinner {
-  to {
-    transform: rotate(360deg); } }
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 1; }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0; } }
       body .popover .image-wrapper .spinner:before {
         content: '';
         box-sizing: border-box;
@@ -54,7 +92,8 @@ body {
         margin-top: 0px;
         margin-left: 0px;
         border-radius: 50%;
-        animation: spinner 1s linear infinite; }
+        animation: spinner 1s linear infinite;
+        -webkit-animation-iteration-count: 1; }
       body .popover .image-wrapper .overlay {
         opacity: 0;
         background: #7aa1b2;
