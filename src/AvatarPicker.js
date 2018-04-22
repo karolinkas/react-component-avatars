@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import {Image} from "./Image.js"
+
 
 export class AvatarPicker extends Component {
     constructor (props){
@@ -8,8 +10,8 @@ export class AvatarPicker extends Component {
       this.state = {
         selected: 0
       };
-      this.getCurrentImage = (i) => {
-          this.setState({selected: i});
+      this.getCurrentImage = (image) => {
+          this.setState({selected: image.id});
       }
     }
   
@@ -34,17 +36,17 @@ export class AvatarPicker extends Component {
   
     imageList (){
       return this.props.imageData.map((image, i) => {
-        return (<Image image={image} imageToGrid={() => this.getCurrentImage(i)}/>
+        return (<Image image={image} imageToGrid={() => this.getCurrentImage(image)} selected={this.props.current === i ? true : false}/>
         );
       });
     }
     
     render (){
-        return (
-            <div onClick={() => this.props.pickerToApp(this.state.selected)} className="popover">
-              <label>Choose your avatar</label>
-              {this.grid()}
-            </div>
+      return (
+          <div onClick={() => this.props.pickerToApp(this.state.selected)} className="popover">
+            <label>Choose your avatar</label>
+            {this.grid()}
+          </div>
       );
     }
 }

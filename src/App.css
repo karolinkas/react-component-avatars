@@ -13,6 +13,12 @@ body {
     margin-left: 125px;
     height: 60px;
     width: 60px; }
+    body .current-avatar:hover {
+      box-shadow: 0 0 0 1px #9ba0a3;
+      border-radius: 50%; }
+    body .current-avatar .active {
+      box-shadow: 0 0 0 1px #9ba0a3;
+      border-radius: 50%; }
   body .wrapper {
     width: 280px; }
     body .wrapper.closed {
@@ -91,6 +97,10 @@ body {
         box-shadow: 0 0 0 3px #9ba0a3;
         -webkit-box-shadow: 0 0 0 3px #9ba0a3;
         -moz-box-shadow: 0 0 0 3px #9ba0a3; }
+      body .popover .image-wrapper img.avatar.active {
+        box-shadow: 0 0 0 3px #7aa1b2;
+        -webkit-box-shadow: 0 0 0 3px #7aa1b2;
+        -moz-box-shadow: 0 0 0 3px #7aa1b2; }
 
 @keyframes spinner {
   0% {

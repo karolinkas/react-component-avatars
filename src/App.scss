@@ -2,7 +2,7 @@
 
 $border-avatar: rgb(155, 160, 163);
 $overlay-avatar: rgb(122, 161, 178);
-$spinner-avatar: rgb(122, 161, 178);
+$blue-avatar: rgb(122, 161, 178);
 $pop-over-background: rgb(44, 48, 51);
 $pop-over-shadow: rgb(102, 102, 102);
 $title-color: rgb(249, 249, 249);
@@ -30,6 +30,14 @@ body {
     margin-left: $widthPopOver / 2 - ($widthHeightImage / 4);
     height: $widthHeightImage;
     width: $widthHeightImage;
+    &:hover{
+      box-shadow: 0 0 0 1px $border-avatar;
+      border-radius: 50%;
+    }
+    .active{
+      box-shadow: 0 0 0 1px $border-avatar;
+      border-radius: 50%;
+    }
   }
  
   .wrapper{
@@ -141,11 +149,14 @@ body {
           -webkit-box-shadow: 0 0 0 3px $border-avatar;
           -moz-box-shadow: 0 0 0 3px $border-avatar;
         }
+        &.active{
+          box-shadow: 0 0 0 3px $blue-avatar;
+          -webkit-box-shadow: 0 0 0 3px $blue-avatar;
+          -moz-box-shadow: 0 0 0 3px $blue-avatar;
+        }
+        
       }
 
-      &:active{
-      }
-      
       @keyframes spinner {
         0% {
           opacity: 0;
@@ -167,7 +178,7 @@ body {
         left: -3px;
         width: 66px;
         height: 66px;
-        border: 3px solid $spinner-avatar;
+        border: 3px solid $blue-avatar;
         border-top-color: rgba(0,0,0,0);
         margin-top: 0px;
         margin-left: 0px;

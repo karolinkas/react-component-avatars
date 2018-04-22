@@ -23,13 +23,22 @@ class App extends Component {
     };
 
     this.setCurrentImage = (i) => {
+      typeof i
       this.setState({current: i, open: false});
-
     };
 
     this.openPicker = () => {
       this.setState({open: !this.state.open});
     };
+  }
+
+  makeFakeRequest(){
+    return new Promise((resolve, reject) => {
+
+      setTimeout(function() { 
+        resolve("Request returned");
+      }, 1000);
+    });
   }
 
   componentDidMount() {
@@ -50,11 +59,14 @@ class App extends Component {
     // close picker when selection has been made but only after spinner has shown and then keep closed
     wrapper.addEventListener("click", (e) => {
       if (this.state.open){
-         setTimeout(function() { 
+
+        this.makeFakeRequest().then(() => {
+
           wrapper.classList.add("closing");
           wrapper.classList.add("closed");
           wrapper.classList.remove("opening");
-        }.bind(this), 1000);
+        }); 
+
       }
     });
 
@@ -66,19 +78,21 @@ class App extends Component {
         wrapper.classList.add("closing");
         wrapper.classList.add("closed");
         wrapper.classList.remove("opening");
+        this.setState({open: false});    
       }
     });
 
   }
 
   render() {
+    //console.log(this.state.current);
     return (
       <div className="app-content"> 
         <div className="current-avatar circle-border">
-          <img onClick={this.openPicker} alt="current" className="circle-border" src={this.imageData[this.state.current].src}/>
+          <img onClick={this.openPicker} alt="current" className={["circle-border", (this.state.open ? "active": null)].join(" ")} src={this.imageData[this.state.current].src}/>
         </div>
         <div className={"wrapper closed"}>
-          <AvatarPicker className={this.openPicker} pickerToApp={this.setCurrentImage} imageData={this.imageData}/>
+          <AvatarPicker className={this.openPicker} pickerToApp={this.setCurrentImage} imageData={this.imageData} {...this.state}/>
         </div>
       </div>
     );
