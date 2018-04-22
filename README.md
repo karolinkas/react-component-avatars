@@ -1,0 +1,1 @@
+I decided to not use any other JS library to practise more VanillaJS

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:light&subset=latin,latin-ext');
 
 $border-avatar: rgb(155, 160, 163);
 $overlay-avatar: rgb(122, 161, 178);
@@ -8,7 +8,7 @@ $pop-over-shadow: rgb(102, 102, 102);
 $title-color: rgb(249, 249, 249);
 $transparent: rgba(0,0,0,0);
 
-$widthPopOver: 310px;
+$widthPopOver: 280px;
 $widthHeightImage: 60px;
 
 body {
@@ -18,6 +18,7 @@ body {
     height: $widthHeightImage;
     width: $widthHeightImage;
     cursor: pointer;
+    
     &.circle-border{
       border-radius: 50%;
       -webkit-border-radius: 50%;
@@ -25,16 +26,15 @@ body {
     } 
   }
 
-  .gridElement{
-
-  }
   .current-avatar{
     margin-left: $widthPopOver / 2 - ($widthHeightImage / 4);
+    height: $widthHeightImage;
+    width: $widthHeightImage;
   }
-
-  
+ 
   .wrapper{
     width: $widthPopOver;
+
     &.closed{
       opacity: 0;
     }
@@ -77,12 +77,12 @@ body {
         transform:  scaleX(1.00) scaleY(1.00) ;
       }
       62% {
-        opacity:1;
+        opacity:0.5;
         transform:  scaleX(0.9) scaleY(0.9) ;
       }
       83% {
-        opacity:0.5;
-        transform:  scaleX(0.7) scaleY(0.7) ;
+        opacity:0.3;
+        transform:  scaleX(0.5) scaleY(0.5) ;
       }
       100% {
         opacity:0;
@@ -93,17 +93,26 @@ body {
   }
 
   .popover{
-    ul{
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-    padding: 14px;
     width: $widthPopOver;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 14px;
     height: auto;
     background-color: $pop-over-background;
     cursor: pointer;
     border-radius: 2px;
+
+    ul{
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      li:not(:last-child){
+        // set margin between images
+        margin-right: 14px;
+        margin-bottom: 14px;
+      }
+    }
 
     label{
       margin-left: 28%;
@@ -119,11 +128,9 @@ body {
     .image-wrapper{
       height: $widthHeightImage;
       width: $widthHeightImage;
-      position: relative;
-      padding: 7px;
+      position: relative;;
       
       img.avatar{
-        margin: 7px;
 
         &:hover{
           opacity: 0.8;
@@ -156,8 +163,8 @@ body {
         content: '';
         box-sizing: border-box;
         position: absolute;
-        top:  11px;
-        left: 11px;
+        top:  -3px;
+        left: -3px;
         width: 66px;
         height: 66px;
         border: 3px solid $spinner-avatar;
@@ -167,7 +174,7 @@ body {
         border-radius: 50%;
         opacity: 0;
         animation: spinner 1s linear infinite;
-        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
       }
     
       .overlay{

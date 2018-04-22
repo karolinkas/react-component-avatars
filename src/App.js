@@ -23,7 +23,8 @@ class App extends Component {
     };
 
     this.setCurrentImage = (i) => {
-      this.setState({current: i});
+      this.setState({current: i, open: false});
+
     };
 
     this.openPicker = () => {
@@ -33,12 +34,10 @@ class App extends Component {
 
   componentDidMount() {
     
-    const content = document.getElementsByClassName("app-content")[0];
     const wrapper = document.getElementsByClassName("wrapper")[0];
     const currentAvatar = document.getElementsByClassName("current-avatar")[0];
     
-    // to stop and pause the opening animation add an addtional class
-    // to play it and remove the same class when the animation is over
+    // play the opening animation when avatar is clicked
     currentAvatar.addEventListener("click", (e) => {
       if (!this.state.open){
         // start opening on clicking current avatar
@@ -48,24 +47,35 @@ class App extends Component {
       }
     });
 
+    // close picker when selection has been made but only after spinner has shown and then keep closed
     wrapper.addEventListener("click", (e) => {
       if (this.state.open){
-        // close only after spinner has shown
          setTimeout(function() { 
           wrapper.classList.add("closing");
-          //wrapper.classList.add("closed");
+          wrapper.classList.add("closed");
           wrapper.classList.remove("opening");
-          console.log(wrapper.classList);
         }.bind(this), 1000);
       }
     });
+
+    const content = document.getElementsByClassName("app-content")[0];
+
+     // close picker when clicking outside of it
+    content.addEventListener("click", (event) => {
+      if (event.target.className === "app-content"){
+        wrapper.classList.add("closing");
+        wrapper.classList.add("closed");
+        wrapper.classList.remove("opening");
+      }
+    });
+
   }
 
   render() {
     return (
       <div className="app-content"> 
-        <div className="current-avatar">
-          <img onClick={this.openPicker} alt="current" src={this.imageData[this.state.current].src}/>
+        <div className="current-avatar circle-border">
+          <img onClick={this.openPicker} alt="current" className="circle-border" src={this.imageData[this.state.current].src}/>
         </div>
         <div className={"wrapper closed"}>
           <AvatarPicker className={this.openPicker} pickerToApp={this.setCurrentImage} imageData={this.imageData}/>
