@@ -9,12 +9,10 @@ body {
       border-radius: 50%;
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%; }
-  body .gridElement {
-    padding: 4px; }
   body .current-avatar {
-    margin-left: 110px; }
+    margin-left: 140px; }
   body .wrapper {
-    width: 280px; }
+    width: 310px; }
     body .wrapper.closed {
       opacity: 0; }
     body .wrapper.opening {
@@ -56,7 +54,8 @@ body {
     opacity: 0;
     transform: scaleX(0) scaleY(0); } }
   body .popover {
-    width: 280px;
+    padding: 14px;
+    width: 310px;
     height: auto;
     background-color: #2c3033;
     cursor: pointer;
@@ -76,15 +75,18 @@ body {
     body .popover .image-wrapper {
       height: 60px;
       width: 60px;
-      position: relative; }
-      body .popover .image-wrapper:hover {
-        opacity: 0.8;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        box-shadow: 0 0 0 3px #9ba0a3;
-        -webkit-box-shadow: 0 0 0 3px #9ba0a3;
-        -moz-box-shadow: 0 0 0 3px #9ba0a3; }
+      position: relative;
+      padding: 7px; }
+      body .popover .image-wrapper img.avatar {
+        margin: 7px; }
+        body .popover .image-wrapper img.avatar:hover {
+          opacity: 0.8;
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          box-shadow: 0 0 0 3px #9ba0a3;
+          -webkit-box-shadow: 0 0 0 3px #9ba0a3;
+          -moz-box-shadow: 0 0 0 3px #9ba0a3; }
 
 @keyframes spinner {
   0% {
@@ -98,10 +100,10 @@ body {
         content: '';
         box-sizing: border-box;
         position: absolute;
-        top: 0%;
-        left: 0%;
-        width: 63px;
-        height: 63px;
+        top: 11px;
+        left: 11px;
+        width: 66px;
+        height: 66px;
         border: 3px solid #7aa1b2;
         border-top-color: transparent;
         margin-top: 0px;
@@ -111,7 +113,7 @@ body {
         animation: spinner 1s linear infinite;
         -webkit-animation-iteration-count: 1; }
       body .popover .image-wrapper .overlay {
-        opacity: 0;
+        opacity: 0.8;
         background: #7aa1b2;
         height: 60px;
         width: 60px;

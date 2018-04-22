@@ -8,7 +8,7 @@ $pop-over-shadow: rgb(102, 102, 102);
 $title-color: rgb(249, 249, 249);
 $transparent: rgba(0,0,0,0);
 
-$widthPopOver: 280px;
+$widthPopOver: 310px;
 $widthHeightImage: 60px;
 
 body {
@@ -26,12 +26,10 @@ body {
   }
 
   .gridElement{
-    //TODO: check why it's collapsing with 14px
-    padding: 4px;
-    //float: left;
+
   }
   .current-avatar{
-    margin-left: $widthPopOver / 2 - $widthHeightImage / 2;
+    margin-left: $widthPopOver / 2 - ($widthHeightImage / 4);
   }
 
   
@@ -100,7 +98,7 @@ body {
       padding: 0;
       margin: 0;
     }
-    //padding: 14px;
+    padding: 14px;
     width: $widthPopOver;
     height: auto;
     background-color: $pop-over-background;
@@ -122,20 +120,22 @@ body {
       height: $widthHeightImage;
       width: $widthHeightImage;
       position: relative;
+      padding: 7px;
       
       img.avatar{
-        
+        margin: 7px;
+
+        &:hover{
+          opacity: 0.8;
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          box-shadow: 0 0 0 3px $border-avatar;
+          -webkit-box-shadow: 0 0 0 3px $border-avatar;
+          -moz-box-shadow: 0 0 0 3px $border-avatar;
+        }
       }
 
-      &:hover{
-        opacity: 0.8;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        box-shadow: 0 0 0 3px $border-avatar;
-        -webkit-box-shadow: 0 0 0 3px $border-avatar;
-        -moz-box-shadow: 0 0 0 3px $border-avatar;
-      }
       &:active{
       }
       
@@ -156,10 +156,10 @@ body {
         content: '';
         box-sizing: border-box;
         position: absolute;
-        top: 0%;
-        left: 0%;
-        width: 63px;
-        height: 63px;
+        top:  11px;
+        left: 11px;
+        width: 66px;
+        height: 66px;
         border: 3px solid $spinner-avatar;
         border-top-color: rgba(0,0,0,0);
         margin-top: 0px;
@@ -171,7 +171,7 @@ body {
       }
     
       .overlay{
-        opacity: 0;
+        opacity: 0.8;
         background: $overlay-avatar;
         height: $widthHeightImage;
         width: $widthHeightImage;
