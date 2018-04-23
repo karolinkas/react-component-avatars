@@ -12,9 +12,9 @@ export class Image extends Component {
     }
   
     render (){
-      return (<div key={this.state.src.toString()} onClick={this.props.imageToGrid} className="image-wrapper">
+      return (<div key={this.state.src} onClick={this.props.imageToGrid} className="image-wrapper">
         <div className={"overlay-background"}></div>
-        <img title="Pick me!" onClick={this.setSelected} className={["avatar", "circle-border", (this.state.selected ? "spinner" : null), (this.props.selected ? "active" : null)].join(" ")} src={this.state.src} alt="avatar"/>
+        <img title="Pick me!" onClick={this.setSelected} className={["avatar", "circle-border", (this.state.selected ? "spinner" : null), (this.props.selected ? "active" : null)].join(" ")} src={this.state.src} id={this.state.id} alt="avatar"/>
         <div className={this.state.selected ? "spinner" : null}></div>
       </div>);
     }

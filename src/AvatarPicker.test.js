@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import AvatarPicker from './AvatarPicker';
-
 import renderer from 'react-test-renderer';
+import ReactTestUtils from 'react-dom/test-utils';
 
-it('renders without crashing', () => {
+import {AvatarPicker} from './AvatarPicker';
+
+
+it('AvatarPicker gets rendered with as many avatars as you pass in', () => {
   const exampleData =  {
     imageData: [{
-      src: "niceFolder",
+      src: "nicePath",
       label: 1
+    }],
+    imageData: [{
+      src: "nicePath",
+      label: 2
     }]
   };
    
@@ -20,17 +25,24 @@ it('renders without crashing', () => {
 
 });
 
-it('Check for click', () => {
+it('Check for click on avatar picker', () => {
+
   const exampleData =  {
     imageData: [{
       src: "niceFolder",
       label: 1
     }]
   };
-   
+
+  const mockFunction = jest.fn();
+
+  const mockObject = {};
+  const element = ReactTestUtils.renderIntoDocument(
+    <AvatarPicker onClick={mockFunction} pickerToApp = {mockFunction} {...exampleData}/>,
+  );
+  const image = ReactDOM.findDOMNode(element);
+  ReactTestUtils.Simulate.click(image);
+  expect(mockFunction).toHaveBeenCalled();
 
 
-  const picker = renderer.create(<AvatarPicker {...exampleData}/>);
-  expect(picker).toMatchSnapshot();
-
-});
+})

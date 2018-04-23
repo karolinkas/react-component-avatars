@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image gets rendered with right attributes 1`] = `
+<div
+  className="image-wrapper"
+  onClick={undefined}
+>
+  <div
+    className="overlay-background"
+  />
+  <img
+    alt="avatar"
+    className="avatar circle-border  "
+    id={undefined}
+    onClick={[Function]}
+    src={undefined}
+    title="Pick me!"
+  />
+  <div
+    className={null}
+  />
+</div>
+`;

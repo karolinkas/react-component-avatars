@@ -1,12 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Check for click 1`] = `
+exports[`AvatarPicker gets rendered with as many avatars as you pass in 1`] = `
 <div
   className="popover"
   onClick={[Function]}
 >
-  <div>
-    <div
+  <label>
+    Choose your avatar
+  </label>
+  <ul>
+    <li
       className="gridElement"
       style={
         Object {
@@ -18,48 +21,22 @@ exports[`Check for click 1`] = `
         className="image-wrapper"
         onClick={[Function]}
       >
-        <img
-          alt="avatar"
-          className="avatar circle-border "
-          src="niceFolder"
-        />
         <div
           className="overlay-background"
         />
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`renders without crashing 1`] = `
-<div
-  className="popover"
-  onClick={[Function]}
->
-  <div>
-    <div
-      className="gridElement"
-      style={
-        Object {
-          "display": "inline-block",
-        }
-      }
-    >
-      <div
-        className="image-wrapper"
-        onClick={[Function]}
-      >
         <img
           alt="avatar"
-          className="avatar circle-border "
-          src="niceFolder"
+          className="avatar circle-border  "
+          id={undefined}
+          onClick={[Function]}
+          src="nicePath"
+          title="Pick me!"
         />
         <div
-          className="overlay-background"
+          className={null}
         />
       </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </div>
 `;

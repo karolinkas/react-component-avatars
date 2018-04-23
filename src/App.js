@@ -22,23 +22,25 @@ class App extends Component {
       open: false
     };
 
-    this.setCurrentImage = (i) => {
-      typeof i
-      this.setState({current: i, open: false});
-    };
-
+    
     this.openPicker = () => {
       this.setState({open: !this.state.open});
     };
-  }
 
+    this.setCurrentImage = (i) => {
+        this.setState({current: i, open: false});
+    };
+  }
+  
   makeFakeRequest(){
+
     return new Promise((resolve, reject) => {
 
-      setTimeout(function() { 
+      setTimeout(() => { 
         resolve("Request returned");
       }, 1000);
     });
+
   }
 
   componentDidMount() {
@@ -47,7 +49,7 @@ class App extends Component {
     const currentAvatar = document.getElementsByClassName("current-avatar")[0];
     
     // play the opening animation when avatar is clicked
-    currentAvatar.addEventListener("click", (e) => {
+    currentAvatar.addEventListener("click", (event) => {
       if (!this.state.open){
         // start opening on clicking current avatar
         wrapper.classList.add("opening");
@@ -57,10 +59,13 @@ class App extends Component {
     });
 
     // close picker when selection has been made but only after spinner has shown and then keep closed
-    wrapper.addEventListener("click", (e) => {
+    wrapper.addEventListener("click", (event) => {
       if (this.state.open){
 
         this.makeFakeRequest().then(() => {
+
+          //change current image only once request is done
+          this.setCurrentImage(event.target.id)
 
           wrapper.classList.add("closing");
           wrapper.classList.add("closed");
@@ -85,7 +90,6 @@ class App extends Component {
   }
 
   render() {
-    //console.log(this.state.current);
     return (
       <div className="app-content"> 
         <div className="current-avatar circle-border">
