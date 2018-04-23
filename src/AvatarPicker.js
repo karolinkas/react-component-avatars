@@ -7,7 +7,7 @@ export class AvatarPicker extends Component {
     constructor (props){
       super(props);
       this.state = {
-        selected: 0
+        selected: this.props.current
       };
       this.getCurrentImage = (image) => {
           this.setState({selected: image.id});
@@ -35,7 +35,7 @@ export class AvatarPicker extends Component {
   
     imageList (){
       return this.props.imageData.map((image, i) => {
-        return (<Image image={image} imageToGrid={() => this.getCurrentImage(image)} selected={this.props.current === i ? true : false}/>
+        return (<Image image={image} imageToGrid={() => this.getCurrentImage(image)} selected={this.state.selected === i ? true : false}/>
         );
       });
     }

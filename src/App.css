@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:light&subset=latin,latin-ext");
 body {
   background-color: #f9f9f9; }
+  body .app-content:focus {
+    outline: none; }
   body img {
     height: 60px;
     width: 60px;
@@ -71,8 +73,13 @@ body {
     height: 0;
     border-bottom: solid 10px #2c3033;
     border-left: solid 10px transparent;
-    border-right: solid 10px transparent; }
+    border-right: solid 10px transparent;
+    transition: opacity .5s linear;
+    opacity: 1; }
+  body .popover:after {
+    opacity: 0; }
   body .popover {
+    box-shadow: 0 0 10px 2px #666666;
     width: 280px;
     white-space: nowrap;
     overflow: hidden;
@@ -130,7 +137,7 @@ body {
         left: -3px;
         width: 66px;
         height: 66px;
-        border: 3px solid #7aa1b2;
+        border: 3px solid #2c3033;
         border-top-color: transparent;
         margin-top: 0px;
         margin-left: 0px;
@@ -139,7 +146,7 @@ body {
         animation: spinner 1s linear infinite;
         animation-iteration-count: 1; }
       body .popover .image-wrapper .overlay {
-        opacity: 0.8;
+        opacity: 0.2;
         background: #7aa1b2;
         height: 60px;
         width: 60px;
